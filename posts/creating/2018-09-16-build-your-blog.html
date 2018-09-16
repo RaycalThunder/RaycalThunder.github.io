@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://raycalthunder.github.io/posts/creating/2018-09-16-build-your-blog/id-rsa.png">
 <meta property="og:image" content="http://raycalthunder.github.io/posts/creating/2018-09-16-build-your-blog/settings.png">
 <meta property="og:image" content="http://raycalthunder.github.io/posts/creating/2018-09-16-build-your-blog/ssh-key.png">
-<meta property="og:updated_time" content="2018-09-16T12:08:56.348Z">
+<meta property="og:updated_time" content="2018-09-16T12:10:18.288Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Github+Hexo]搭建自己的独立博客">
 <meta name="twitter:description" content="前言：刚开始尝试用Python做项目，遇到问题常常穿梭于各大博客寻求解决，继而萌生了自己写博客的想法。我们可以在博客分享做项目遇到的坑，也可以对自己学到的知识进行梳理。作为一个爱学(zhuang)习(B)的程序员，我选择了在Github上搭建自己的个人博客，当参考着别人的教程，成功地把博客搭建起来了，第一篇博文也就有素材了。">
@@ -146,7 +146,7 @@
 <h3 id="配置部署信息"><a href="#配置部署信息" class="headerlink" title="配置部署信息"></a>配置部署信息</h3><p>在博客站点文件夹中找到 <strong>_config.yml</strong>，打开并找到Deployment，修改如下：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span>	<span class="comment">#使用Git发布</span></span><br><span class="line"><span class="attr">  repository:</span> <span class="attr">https://github.com/username/username.github.io.git</span>	<span class="comment">#创建的GitHub仓库</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span>	<span class="comment">#部署的分支</span></span><br></pre></td></tr></table></figure></p>
 <p>其中repository就是代码仓库的克隆地址。</p>
 <h3 id="执行部署"><a href="#执行部署" class="headerlink" title="执行部署"></a>执行部署</h3><p>首次部署需要先安装一个扩展，命令行输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
-<p>然后执行Hexo的生成、部署命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate	<span class="comment">#生成</span></span><br><span class="line">hexo deploy		<span class="comment">#部署</span></span><br></pre></td></tr></table></figure></p>
+<p>然后执行Hexo的生成、部署命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo generate	<span class="comment">#生成</span></span><br><span class="line">hexo deploy		<span class="comment">#部署</span></span><br><span class="line">hexo d -g		<span class="comment">#在部署前先生成</span></span><br></pre></td></tr></table></figure></p>
 
       
     </div>
