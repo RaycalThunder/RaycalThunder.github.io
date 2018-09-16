@@ -19,8 +19,11 @@
 <meta property="og:image" content="http://raycalthunder.github.io/posts/creating/2018-09-16-build-your-blog/name-repository.png">
 <meta property="og:image" content="http://raycalthunder.github.io/posts/creating/2018-09-16-build-your-blog/setting.png">
 <meta property="og:image" content="http://raycalthunder.github.io/posts/creating/2018-09-16-build-your-blog/github-pages.png">
-<meta property="og:image" content="http://raycalthunder.github.io/posts/creating/2018-09-16-build-your-blog/hexo-server.jpg">
-<meta property="og:updated_time" content="2018-09-16T09:45:39.198Z">
+<meta property="og:image" content="http://raycalthunder.github.io/posts/creating/2018-09-16-build-your-blog/hexo-server.png">
+<meta property="og:image" content="http://raycalthunder.github.io/posts/creating/2018-09-16-build-your-blog/id-rsa.png">
+<meta property="og:image" content="http://raycalthunder.github.io/posts/creating/2018-09-16-build-your-blog/settings.png">
+<meta property="og:image" content="http://raycalthunder.github.io/posts/creating/2018-09-16-build-your-blog/ssh-key.png">
+<meta property="og:updated_time" content="2018-09-16T12:08:56.348Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Github+Hexo]搭建自己的独立博客">
 <meta name="twitter:description" content="前言：刚开始尝试用Python做项目，遇到问题常常穿梭于各大博客寻求解决，继而萌生了自己写博客的想法。我们可以在博客分享做项目遇到的坑，也可以对自己学到的知识进行梳理。作为一个爱学(zhuang)习(B)的程序员，我选择了在Github上搭建自己的个人博客，当参考着别人的教程，成功地把博客搭建起来了，第一篇博文也就有素材了。">
@@ -123,15 +126,32 @@
 <p>然后在命令行继续输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure></p>
 <p>这里npm将会自动安装所需要的组件。</p>
 <h3 id="窥视Hexo"><a href="#窥视Hexo" class="headerlink" title="窥视Hexo"></a>窥视Hexo</h3><p>来预览一下Hexo的博客页面，先要生成静态网页，在命令行输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure></p>
-<p>然后是运行本地服务，在命令行继续输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure></p>
+<p>然后是运行本地服务（平时调试也是用这个），在命令行继续输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure></p>
 <p>可以在命令行看到：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure></p>
 <p>这时在浏览器输入 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a>，即可看到Hexo博客页面。（Hexo的默认主题是landscape）</p>
-<img src="/posts/creating/2018-09-16-build-your-blog/hexo-server.jpg" title="hexo-server">
-<h2 id="四、"><a href="#四、" class="headerlink" title="四、"></a>四、</h2>
+<img src="/posts/creating/2018-09-16-build-your-blog/hexo-server.png" title="hexo-server">
+<h2 id="四、将博客部署到GitHub"><a href="#四、将博客部署到GitHub" class="headerlink" title="四、将博客部署到GitHub"></a>四、将博客部署到GitHub</h2><h3 id="配置Git的个人信息"><a href="#配置Git的个人信息" class="headerlink" title="配置Git的个人信息"></a>配置Git的个人信息</h3><p>再次来到博客站点文件夹，右键 <strong>“Git Bash Here”</strong>。<br>Git的个人信息，其实就是用户名和邮箱，在命令行依次输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"uesrname"</span></span><br><span class="line">git config --global user.email <span class="string">"email"</span></span><br></pre></td></tr></table></figure></p>
+<p>其中username和email就是注册GitHub时的用户名跟邮箱。</p>
+<h3 id="添加SSH密钥到GitHub"><a href="#添加SSH密钥到GitHub" class="headerlink" title="添加SSH密钥到GitHub"></a>添加SSH密钥到GitHub</h3><p>先要生成SSH密钥，在命令行输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"email"</span></span><br></pre></td></tr></table></figure></p>
+<p>这里的email同样是注册GitHub的那个邮箱，一直回车直到命令结束。<br>然后默认会在C:\Users\username.shh中会生成两个文件，分别是id_rsa和id_rsa.pub。</p>
+<img src="/posts/creating/2018-09-16-build-your-blog/id-rsa.png" title="id-rsa">
+<p>将整个.ssh文件夹拷贝到Git的安装目录下。<br>拷贝ssh key到剪切板（待会可以直接粘贴的），在命令行输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clip &lt; ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure></p>
+<p>登陆GitHub，在头像点击的 <strong>Settings</strong>。</p>
+<img src="/posts/creating/2018-09-16-build-your-blog/settings.png" title="settings">
+<p>然后选择左边的 <strong>SSH and GPG keys</strong>，再点击 <strong>New SSH key</strong>，之后会出现添加页面。</p>
+<img src="/posts/creating/2018-09-16-build-your-blog/ssh-key.png" title="ssh-key">
+<p>在Title里给这个ssh key起个名字，在下面Key里粘贴刚才拷贝的ssh key，然后点击 <strong>Add SSH key</strong>。</p>
+<p>检验一下刚才添加的SSH，在命令行中输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure></p>
+<p>当出现”Are you sure you want to continue connecting?”时输入”yes”，当出现”hi …! you are successfully authenticated,…”的时候，就成功了。</p>
+<h3 id="配置部署信息"><a href="#配置部署信息" class="headerlink" title="配置部署信息"></a>配置部署信息</h3><p>在博客站点文件夹中找到 <strong>_config.yml</strong>，打开并找到Deployment，修改如下：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span>	<span class="comment">#使用Git发布</span></span><br><span class="line"><span class="attr">  repository:</span> <span class="attr">https://github.com/username/username.github.io.git</span>	<span class="comment">#创建的GitHub仓库</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span>	<span class="comment">#部署的分支</span></span><br></pre></td></tr></table></figure></p>
+<p>其中repository就是代码仓库的克隆地址。</p>
+<h3 id="执行部署"><a href="#执行部署" class="headerlink" title="执行部署"></a>执行部署</h3><p>首次部署需要先安装一个扩展，命令行输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
+<p>然后执行Hexo的生成、部署命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate	<span class="comment">#生成</span></span><br><span class="line">hexo deploy		<span class="comment">#部署</span></span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://raycalthunder.github.io/posts/creating/2018-09-16-build-your-blog.html" data-id="cjm4oeqrz00008ovrrfh2rc1a" class="article-share-link">Share</a>
+      <a data-url="http://raycalthunder.github.io/posts/creating/2018-09-16-build-your-blog.html" data-id="cjm4ti7av0000iovr2a3wjz9v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/progress/">无中生有</a></li></ul>
